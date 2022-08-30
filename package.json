@@ -4,6 +4,7 @@
         "@babel/preset-env": "^7.18.10",
         "@babel/preset-react": "^7.18.6",
         "@babel/preset-typescript": "^7.18.6",
+        "@types/node": "^18.7.14",
         "babel-core": "^6.26.3",
         "babel-loader": "^8.2.5",
         "css-loader": "^6.7.1",
@@ -26,8 +27,9 @@
         "dev": "webpack-dev-server",
         "devWithMap": "webpack-dev-server --devtool source-map",
         "clean": "rimraf ./dist",
-        "build": "yarn clean && webpack --config webpack.config.js",
-        "wp": "webpack"
+        "devCompiler": "tsc --build ./webpack/tsconfig.json -w",
+        "buildCompiler": "tsc --build ./webpack/tsconfig.json",
+        "build": "yarn clean && node ./bin/index.js"
     },
     "devDependencies": {
         "webpack-cli": "^4.10.0"

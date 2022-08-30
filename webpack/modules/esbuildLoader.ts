@@ -1,8 +1,9 @@
-import { PATH } from '../common';
+import { RuleSetRule } from 'webpack';
+import {filePath} from '../common/path'
 
-export const esbuildLoader = {
-    test: /\.tsx$/,
-    exclude: PATH.resolve(__dirname, 'node_modules'),
+export const esbuildLoader: RuleSetRule = {
+    test: /\.tsx|.ts$/,
+    include: [filePath.src],
     use: [
         {
             loader: 'esbuild-loader',

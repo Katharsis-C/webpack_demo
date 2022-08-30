@@ -21,6 +21,7 @@ module.exports = {
     output: {
         filename: 'js/[name]_[chunkhash:8].js',
         path: PATH.resolve(__dirname, './dist'),
+        chunkFilename: 'common/js/[name].[chunkhash:8].bundle.js'
     },
     devServer: {
         static: PATH.resolve(__dirname),
@@ -67,12 +68,12 @@ module.exports = {
         initHtml({
             fileName: 'index.html',
             title: 'index',
-            chunks: ['index'],
+            chunks: ['common','index'],
         }),
         initHtml({
             fileName: 'login.html',
             title: 'login',
-            chunks: ['login'],
+            chunks: ['common','login'],
         }),
         new MiniCss({
             filename: 'css/[name]_[contenthash:8].css',
