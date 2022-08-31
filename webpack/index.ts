@@ -2,6 +2,7 @@ import { filePath } from './common/path';
 import { CustomWebpack } from './webpack';
 import Server from 'webpack-dev-server/lib/Server';
 import WebpackDevServer from 'webpack-dev-server';
+import { program } from 'commander';
 
 const devServerConfig: WebpackDevServer.Configuration = {
     static: {
@@ -13,17 +14,18 @@ const devServerConfig: WebpackDevServer.Configuration = {
     },
 };
 
+/* 构建 */
 const build = () => {
     CustomWebpack.init();
     CustomWebpack.compiler.run((err, stats) => {
         if (err) {
-            console.log(5, { err });
             process.exit(10);
         }
         CustomWebpack.compiler.close((err) => {});
     });
 };
 
+/* 开发 */
 const dev = () => {
     CustomWebpack.init();
 
@@ -40,6 +42,12 @@ const dev = () => {
 // dev();
 
 // XXX: 构建
-build();
+// build();
+
+
 
 export { devServerConfig, build, dev };
+
+program.version('1.1.4')
+
+program.parse()
