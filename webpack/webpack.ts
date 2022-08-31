@@ -9,16 +9,17 @@ export class CustomWebpack {
     static config: Configuration = {
         mode: 'development',
         devtool: 'eval-source-map',
+        target: ['web', 'es5'],
         entry: () => {
-            console.log(13, filePath.src)
             return {
-                index: `${filePath.src}/app1/index/index.tsx`,
-                login: `${filePath.src}/app2/login/index.tsx`,
+                index: `${filePath.src}/app1/index.ts`,
+                // login: `${filePath.src}/app2/login/index.tsx`,
             };
         },
         output: {
             path: filePath.dist,
-            filename: '[name]/js/[name]_[chunkhash:6].js',
+            publicPath: 'auto',
+            filename: 'app1/js/[name]_[chunkhash:6].js',
             chunkFilename: 'common/js/[name]_[chunkhash:6].bundle.js',
         },
         context: filePath.src,
@@ -26,6 +27,9 @@ export class CustomWebpack {
             rules: [esbuildLoader, scssLoader],
         },
         plugins: [...htmls, minicssPlugin],
+        resolve: {
+            extensions: ['.tsx', 'ts', '.js'],
+        },
     };
 
     static compiler: Compiler = null;

@@ -1,17 +1,8 @@
 import React from 'react';
 
-import { createRoot } from 'react-dom/client';
-
 import './index.scss';
 import '../../common/scss/common.scss';
 
-const app = window.document.getElementById('app');
-
-const root = createRoot(app);
-
-const Index = () => <div>Indextsx</div>;
-
-root.render(<Index />);
-
+export const IndexPage = () => <div>哼哼啊啊啊啊啊</div>;
 
 // console.log(114514)

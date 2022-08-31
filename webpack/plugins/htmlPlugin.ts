@@ -5,16 +5,18 @@ interface InitHtmlParams {
     fileName: string;
     title: string;
     chunks: Array<string>;
+    appname: string;
 }
 
-const initHtml = ({ fileName, title, chunks }: InitHtmlParams) => {
+const initHtml = ({ fileName, title, chunks, appname }: InitHtmlParams) => {
     return new HTMLPlugin({
         title,
-        filename: `${title}/${fileName}`,
-        template: `${filePath.root}/index.html`,
+        filename: `${filePath.dist}/${appname}/${fileName}`,
+        template: `${filePath.src}/${appname}/index.html`,
         minify: true,
-        inject: true,
+        inject: 'body',
         chunks,
+        scriptLoading: 'blocking',
     });
 };
 
@@ -23,10 +25,11 @@ export const htmls = [
         fileName: 'index.html',
         title: 'index',
         chunks: ['common', 'index'],
+        appname: 'app1',
     }),
-    initHtml({
-        fileName: 'login.html',
-        title: 'login',
-        chunks: ['common', 'login'],
-    }),
+    // initHtml({
+    //     fileName: 'login.html',
+    //     title: 'login',
+    //     chunks: ['common', 'login'],
+    // }),
 ];
