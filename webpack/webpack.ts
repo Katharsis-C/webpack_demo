@@ -12,8 +12,8 @@ export class CustomWebpack {
         entry: () => {
             console.log(13, filePath.src)
             return {
-                index: `${filePath.src}/app1/index/index.ts`,
-                login: `${filePath.src}/app2/login/index.ts`,
+                index: `${filePath.src}/app1/index/index.tsx`,
+                login: `${filePath.src}/app2/login/index.tsx`,
             };
         },
         output: {
