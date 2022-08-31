@@ -7,6 +7,7 @@
         "@types/node": "^18.7.14",
         "babel-core": "^6.26.3",
         "babel-loader": "^8.2.5",
+        "commander": "^9.4.0",
         "css-loader": "^6.7.1",
         "esbuild": "^0.15.5",
         "esbuild-loader": "^2.19.0",
@@ -29,7 +30,8 @@
         "clean": "rimraf ./dist",
         "devCompiler": "tsc --build ./webpack/tsconfig.json -w",
         "buildCompiler": "tsc --build ./webpack/tsconfig.json",
-        "build": "yarn clean && node ./bin/index.js"
+        "build": "yarn clean && node ./bin/index.js",
+        "vsv": "node ./bin/index.js -V"
     },
     "devDependencies": {
         "webpack-cli": "^4.10.0"
