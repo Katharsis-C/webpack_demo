@@ -1,5 +1,6 @@
 import { filePath } from './../common/path';
 import HTMLPlugin from 'html-webpack-plugin';
+import { CommandArgs } from '../common/commandArgs';
 
 interface InitHtmlParams {
     fileName: string;
@@ -8,7 +9,12 @@ interface InitHtmlParams {
     appname: string;
 }
 
-const initHtml = ({ fileName, title, chunks, appname }: InitHtmlParams) => {
+export const initHtml = ({
+    fileName,
+    title,
+    chunks,
+    appname,
+}: InitHtmlParams) => {
     return new HTMLPlugin({
         title,
         filename: `${filePath.dist}/${appname}/${fileName}`,
@@ -20,16 +26,25 @@ const initHtml = ({ fileName, title, chunks, appname }: InitHtmlParams) => {
     });
 };
 
-export const htmls = [
-    initHtml({
-        fileName: 'index.html',
-        title: 'index',
-        chunks: ['common', 'index'],
-        appname: 'app1',
-    }),
-    // initHtml({
-    //     fileName: 'login.html',
-    //     title: 'login',
-    //     chunks: ['common', 'login'],
-    // }),
-];
+// export const htmlPlugin = [
+//     initHtml({
+//         fileName: 'index.html',
+//         title: 'index',
+//         chunks: ['common', 'index'],
+//         appname: 'app1',
+//     }),
+//     // initHtml({
+//     //     fileName: 'login.html',
+//     //     title: 'login',
+//     //     chunks: ['common', 'login'],
+//     // }),
+// ];
+
+export const htmlPlugin = CommandArgs.apps.map((appname) => {
+    return initHtml({
+        fileName: `${appname}.html`,
+        title: appname,
+        chunks: ['common', appname],
+        appname: appname,
+    });
+});

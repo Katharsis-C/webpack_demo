@@ -31,7 +31,7 @@
         "devCompiler": "tsc --build ./webpack/tsconfig.json -w",
         "buildCompiler": "tsc --build ./webpack/tsconfig.json",
         "build": "yarn clean && node ./bin/index.js",
-        "vsv": "node ./bin/index.js -V"
+        "vsv": "yarn clean && node ./bin/index.js build --apps=app1 --env=test"
     },
     "devDependencies": {
         "webpack-cli": "^4.10.0"
