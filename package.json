@@ -1,4 +1,8 @@
 {
+    "name": "webpack_demo",
+    "bin": {
+        "zuiko": "./bin/index.js"
+    },
     "dependencies": {
         "@babel/core": "^7.18.13",
         "@babel/preset-env": "^7.18.10",
