@@ -33,12 +33,4 @@ const dev = () => {
     })();
 };
 
-// XXX: 开发
-// dev();
-
-// XXX: 构建
-// build();
-
-
-
 export { devServerConfig, build, dev };

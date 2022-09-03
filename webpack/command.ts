@@ -1,12 +1,11 @@
 import { ArgsType, CommandArgs } from './common/commandArgs';
 import { program } from 'commander';
 
-
 /**
  * @description 加载cli参数
  * @param {ArgsType} option 选项
  */
-const initOption = (option:ArgsType) => {
+const initOption = (option: ArgsType) => {
     CommandArgs.init(option);
 };
 
@@ -27,10 +26,13 @@ program.version('0.0.0');
  * @class CommandOptions
  */
 export class CommandOptions {
-    static apps = program.createOption('--apps [value]');
-    static env = program.createOption('--env [value]');
+    static apps = program.createOption('--apps [value]', '构建的应用');
+    static env = program.createOption('--env [value]', '构建环境');
 }
 
+
+
+/** 构建 */
 program
     .command('build')
     .addOption(CommandOptions.apps)
