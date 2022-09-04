@@ -39,7 +39,8 @@
         "build": "yarn clean && node ./bin/index.js",
         "idxDev1": "node ./bin/index.js dev --apps=app1 --env=dev",
         "idxDev2": "node ./bin/index.js dev --apps=app2 --env=dev",
-        "idxBuild": "yarn clean && node ./bin/index.js build --apps=app1,app2 --env=test"
+        "idxBuild": "yarn clean && node ./bin/index.js build --apps=app1,app2 --env=test",
+        "precommit": "yarn run clean"
     },
     "devDependencies": {
         "webpack-cli": "^4.10.0"
