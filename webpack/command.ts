@@ -30,7 +30,18 @@ export class CommandOptions {
     static env = program.createOption('--env [value]', '构建环境');
 }
 
-
+/* 开发 */
+program
+    .command('dev')
+    .addOption(CommandOptions.apps)
+    .addOption(CommandOptions.env)
+    .action(async (args: ArgsType) => {
+        initOption(args);
+        initWebpack();
+        await import('./index').then(({ dev }) => {
+            dev();
+        });
+    });
 
 /** 构建 */
 program

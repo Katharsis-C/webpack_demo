@@ -5,6 +5,6 @@ import '../../common/scss/common.scss';
 
 export const LoginPage = () => (
     <div>
-        <span>Logintsx</span>
+        <span>登录</span>
     </div>
 );

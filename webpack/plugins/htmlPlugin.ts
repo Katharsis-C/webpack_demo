@@ -2,22 +2,18 @@ import { filePath } from './../common/path';
 import HTMLPlugin from 'html-webpack-plugin';
 import { CommandArgs } from '../common/commandArgs';
 
-interface InitHtmlParams {
-    fileName: string;
+/* 生成html参数 */
+interface HtmlGenParams {
     title: string;
     chunks: Array<string>;
     appname: string;
 }
 
-export const initHtml = ({
-    fileName,
-    title,
-    chunks,
-    appname,
-}: InitHtmlParams) => {
+/* 生成html方法 */
+export const genHtml = ({ title, chunks, appname }: HtmlGenParams) => {
     return new HTMLPlugin({
         title,
-        filename: `${filePath.dist}/${appname}/${fileName}`,
+        filename: `${filePath.dist}/${appname}/index.html`,
         template: `${filePath.src}/${appname}/index.html`,
         minify: true,
         inject: 'body',
@@ -26,23 +22,9 @@ export const initHtml = ({
     });
 };
 
-// export const htmlPlugin = [
-//     initHtml({
-//         fileName: 'index.html',
-//         title: 'index',
-//         chunks: ['common', 'index'],
-//         appname: 'app1',
-//     }),
-//     // initHtml({
-//     //     fileName: 'login.html',
-//     //     title: 'login',
-//     //     chunks: ['common', 'login'],
-//     // }),
-// ];
-
+/* html模板 */
 export const htmlPlugin = CommandArgs.apps.map((appname) => {
-    return initHtml({
-        fileName: `${appname}.html`,
+    return genHtml({
         title: appname,
         chunks: ['common', appname],
         appname: appname,
