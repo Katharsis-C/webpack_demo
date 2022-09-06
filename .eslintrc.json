@@ -1,0 +1,8 @@
+{
+    "plugins": ["@typescript-eslint"],
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "no-unused-vars": "error",
+        "semi": "error"
+    }
+}
