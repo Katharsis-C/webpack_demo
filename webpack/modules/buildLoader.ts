@@ -1,7 +1,7 @@
 import { RuleSetRule } from 'webpack';
 import { filePath } from '../common/path';
 
-export const esbuildLoader: RuleSetRule = {
+export const buildLoader: RuleSetRule = {
     test: /\.tsx|.ts$/,
     include: [filePath.src],
     use: [

@@ -1,17 +1,21 @@
 import { fileLoader } from './modules/fileLoader';
 import { scssLoader } from './modules/scssLoader';
-import { esbuildLoader } from './modules/esbuildLoader';
+import { buildLoader } from './modules/buildLoader';
 import { filePath } from './common/path';
 import { Compiler, webpack, Configuration } from 'webpack';
 import { htmlPlugin } from './plugins/htmlPlugin';
 import { minicssPlugin } from './plugins/minicssPlugin';
 import { CommandArgs } from './common/commandArgs';
 import { definePlugin } from './plugins/definedPlugin';
+import CssMinimizer from 'css-minimizer-webpack-plugin';
+// import { ESBuildMinifyPlugin } from 'esbuild-loader';
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 
 export class CustomWebpack {
     static config: Configuration = {
         mode: 'development',
-        devtool: 'eval-source-map',
+        // devtool: false,
+        devtool: CommandArgs.env === 'test' ? false : 'eval-source-map',
         target: ['web', 'es5'],
         entry: () => {
             const entry = {};
@@ -29,11 +33,23 @@ export class CustomWebpack {
         },
         context: filePath.src,
         module: {
-            rules: [esbuildLoader, scssLoader, fileLoader],
+            rules: [buildLoader, scssLoader, fileLoader],
         },
         plugins: [...htmlPlugin, minicssPlugin, definePlugin],
         resolve: {
             extensions: ['.tsx', 'ts', '.js'],
+        },
+        optimization: {
+            /* enable in development mode */
+            minimize: true,
+
+            minimizer: [
+                new CssMinimizer(),
+                new ESBuildMinifyPlugin({
+                    target: 'es2015',
+                    keepNames: true,
+                }),
+            ],
         },
     };
 
