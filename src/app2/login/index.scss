@@ -2,4 +2,7 @@ $bgColor: cyan;
 
 #app {
     background-color: $bgColor;
+    background-image: url(../../asset/image/hng.jpg);
+    background-repeat: no-repeat;
+    padding: 1rem;
 }

@@ -1,3 +1,4 @@
+import { fileLoader } from './modules/fileLoader';
 import { scssLoader } from './modules/scssLoader';
 import { esbuildLoader } from './modules/esbuildLoader';
 import { filePath } from './common/path';
@@ -27,10 +28,11 @@ export class CustomWebpack {
             publicPath: 'auto',
             filename: `[name]/js/[name]_[chunkhash:6].js`,
             chunkFilename: 'common/js/[name]_[chunkhash:6].bundle.js',
+            assetModuleFilename: 'asset/image/[hash:6][ext][query]',
         },
         context: filePath.src,
         module: {
-            rules: [esbuildLoader, scssLoader],
+            rules: [esbuildLoader, scssLoader, fileLoader],
         },
         plugins: [...htmlPlugin, minicssPlugin],
         resolve: {

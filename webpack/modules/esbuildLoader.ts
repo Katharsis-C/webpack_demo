@@ -1,5 +1,5 @@
 import { RuleSetRule } from 'webpack';
-import {filePath} from '../common/path'
+import { filePath } from '../common/path';
 
 export const esbuildLoader: RuleSetRule = {
     test: /\.tsx|.ts$/,
