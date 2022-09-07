@@ -6,6 +6,7 @@ import { Compiler, webpack, Configuration } from 'webpack';
 import { htmlPlugin } from './plugins/htmlPlugin';
 import { minicssPlugin } from './plugins/minicssPlugin';
 import { CommandArgs } from './common/commandArgs';
+import { definePlugin } from './plugins/definedPlugin';
 
 export class CustomWebpack {
     static config: Configuration = {
@@ -18,10 +19,6 @@ export class CustomWebpack {
                 entry[appName] = `${filePath.src}/${appName}/index.ts`;
             });
             return entry;
-            // return {
-            //     index: `${filePath.src}/${CommandArgs.apps[0]}/index.ts`,
-            //     // login: `${filePath.src}/app2/login/index.tsx`,
-            // };
         },
         output: {
             path: filePath.dist,
@@ -34,7 +31,7 @@ export class CustomWebpack {
         module: {
             rules: [esbuildLoader, scssLoader, fileLoader],
         },
-        plugins: [...htmlPlugin, minicssPlugin],
+        plugins: [...htmlPlugin, minicssPlugin, definePlugin],
         resolve: {
             extensions: ['.tsx', 'ts', '.js'],
         },

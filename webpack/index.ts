@@ -14,11 +14,11 @@ const devServerConfig: WebpackDevServer.Configuration = {
 
 /* 构建 */
 const build = () => {
-    CustomWebpack.compiler.run((err, stats) => {
+    CustomWebpack.compiler.run((err) => {
         if (err) {
             process.exit(10);
         }
-        CustomWebpack.compiler.close((err) => {});
+        CustomWebpack.compiler.close(() => {});
     });
 };
 

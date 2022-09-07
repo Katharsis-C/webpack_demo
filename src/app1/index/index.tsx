@@ -5,4 +5,4 @@ import '../../common/scss/common.scss';
 
 export const IndexPage = () => <div>哼哼哼啊啊啊啊啊</div>;
 
-// console.log(114514)
+console.log(process.env);
