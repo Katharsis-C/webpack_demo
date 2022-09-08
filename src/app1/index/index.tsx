@@ -1,8 +1,13 @@
 import React from 'react';
+import lodash from 'lodash';
 
 import './index.scss';
 import '../../common/scss/common.scss';
 
-export const IndexPage = () => <div>哼哼哼啊啊啊啊啊</div>;
+const a = {
+    fx: '114514',
+};
 
-console.log(process.env);
+console.log(lodash.get(a, 'fx'));
+
+export const IndexPage = () => <div>哼哼哼啊啊啊啊啊</div>;

@@ -8,9 +8,13 @@ import { minicssPlugin } from './plugins/minicssPlugin';
 import { CommandArgs } from './common/commandArgs';
 import { definePlugin } from './plugins/definedPlugin';
 import CssMinimizer from 'css-minimizer-webpack-plugin';
-// import { ESBuildMinifyPlugin } from 'esbuild-loader';
-const { ESBuildMinifyPlugin } = require('esbuild-loader');
+import ESBuildMinifyPlugin from 'esbuild-loader/dist/minify-plugin';
+// const { ESBuildMinifyPlugin } = require('esbuild-loader');
+import WebpackBarPlugin from 'webpackbar';
 
+/**
+ * 封装webpack
+ */
 export class CustomWebpack {
     static config: Configuration = {
         mode: 'development',
@@ -35,21 +39,50 @@ export class CustomWebpack {
         module: {
             rules: [buildLoader, scssLoader, fileLoader],
         },
-        plugins: [...htmlPlugin, minicssPlugin, definePlugin],
+        plugins: [
+            ...htmlPlugin,
+            minicssPlugin,
+            definePlugin,
+            new WebpackBarPlugin({
+                
+            }),
+        ],
         resolve: {
             extensions: ['.tsx', 'ts', '.js'],
         },
         optimization: {
             /* enable in development mode */
             minimize: true,
-
             minimizer: [
+                /**
+                 * css压缩
+                 */
                 new CssMinimizer(),
+                /**
+                 * esbuild-js压缩
+                 */
                 new ESBuildMinifyPlugin({
                     target: 'es2015',
                     keepNames: true,
                 }),
             ],
+            /**
+             * chunk设置, 抽离公共模块
+             */
+            splitChunks: {
+                maxInitialRequests: 3,
+                maxAsyncRequests: 5,
+                minChunks: 1,
+                cacheGroups: {
+                    common: {
+                        chunks: 'initial',
+                        name: 'common',
+                        minSize: 1,
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10,
+                    },
+                },
+            },
         },
     };
 
