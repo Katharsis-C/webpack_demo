@@ -5,5 +5,4 @@ export const fileLoader: RuleSetRule = {
     test: /\.jpg|.png$/,
     include: [filePath.src],
     type: 'asset/resource',
-    
 };
