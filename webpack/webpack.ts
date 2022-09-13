@@ -1,3 +1,4 @@
+import MiniCss from 'mini-css-extract-plugin';
 // import { urlLoader } from './modules/rawLoader';
 import { fileLoader } from './modules/fileLoader';
 import { scssLoader } from './modules/scssLoader';
@@ -38,7 +39,36 @@ export class CustomWebpack {
         },
         context: filePath.src,
         module: {
-            rules: [buildLoader, scssLoader, fileLoader],
+            rules: [
+                buildLoader,
+                fileLoader,
+                {
+                    oneOf: [
+                        scssLoader,
+                        {
+                            test: /\.css$/,
+                            include: /node_modules/,
+                            use: [MiniCss.loader, 'css-loader'],
+                        },
+                        {
+                            test: /\.less$/,
+                            include: /node_modules/,
+                            use: [
+                                MiniCss.loader,
+                                'css-loader',
+                                {
+                                    loader: 'less-loader',
+                                    options: {
+                                        lessOptions: {
+                                            javascriptEnabled: true,
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
             // rules: [buildLoader, scssLoader, fileLoader, urlLoader],
         },
         plugins: [
