@@ -12,6 +12,8 @@ const a = {
 /** test lodash */
 console.log(lodash.get(a, 'fx'));
 
+console.log(nikonSvg, 16);
+
 export const IndexPage = () => (
     <div>
         <p className={'slogan'}>nikon</p>

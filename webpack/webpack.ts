@@ -1,4 +1,4 @@
-import { urlLoader } from './modules/rawLoader';
+// import { urlLoader } from './modules/rawLoader';
 import { fileLoader } from './modules/fileLoader';
 import { scssLoader } from './modules/scssLoader';
 import { buildLoader } from './modules/buildLoader';
@@ -38,8 +38,8 @@ export class CustomWebpack {
         },
         context: filePath.src,
         module: {
-            // rules: [buildLoader, scssLoader, fileLoader],
-            rules: [buildLoader, scssLoader, fileLoader, urlLoader],
+            rules: [buildLoader, scssLoader, fileLoader],
+            // rules: [buildLoader, scssLoader, fileLoader, urlLoader],
         },
         plugins: [
             ...htmlPlugin,
