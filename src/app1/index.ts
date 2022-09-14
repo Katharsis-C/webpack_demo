@@ -1,5 +1,5 @@
-import { IndexPage } from './index/index';
+import { App } from './container/app';
 import React from 'react';
 import ReactDom from 'react-dom';
 
-ReactDom.render(React.createElement(IndexPage), document.getElementById('app'));
+ReactDom.render(React.createElement(App), document.getElementById('app'));

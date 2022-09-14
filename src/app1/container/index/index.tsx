@@ -2,10 +2,11 @@ import React from 'react';
 import lodash from 'lodash';
 
 import './index.scss';
-import '../../common/scss/common.scss';
-import nikonSvg from '../../asset/image/Nikon.svg';
+import '../../../common/scss/common.scss';
+import nikonSvg from '../../../asset/image/Nikon.svg';
 
 import { DatePicker, Button, Input, InputNumber } from 'antd';
+import { Link } from 'react-router-dom';
 
 const a = {
     fx: '114514',
@@ -40,6 +41,8 @@ export const IndexPage = () => {
             <div>
                 <InputNumber />
             </div>
+            <Link to={'/page2'}>index2</Link>
+
         </div>
     );
 };
