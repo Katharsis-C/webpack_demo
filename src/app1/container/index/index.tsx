@@ -42,7 +42,6 @@ export const IndexPage = () => {
                 <InputNumber />
             </div>
             <Link to={'/page2'}>index2</Link>
-
         </div>
     );
 };
