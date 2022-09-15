@@ -14,7 +14,16 @@ const devServerConfig: WebpackDevServer.Configuration = {
 
 /* 构建 */
 const build = () => {
-    CustomWebpack.compiler.run((err) => {
+    console.log(17, filePath);
+    CustomWebpack.compiler.run((err, status) => {
+        let info = status.toJson();
+
+        info.errors.forEach((msg) => {
+            console.log('\n', msg.details);
+            console.log('\n', msg.stack);
+
+        });
+
         if (err) {
             process.exit(10);
         }

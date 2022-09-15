@@ -14,6 +14,9 @@ import ESBuildMinifyPlugin from 'esbuild-loader/dist/minify-plugin';
 // const { ESBuildMinifyPlugin } = require('esbuild-loader');
 import WebpackBarPlugin from 'webpackbar';
 
+
+console.log(6, filePath.nodeModule);
+
 /**
  * 封装webpack
  */
@@ -40,32 +43,11 @@ export class CustomWebpack {
         context: filePath.src,
         module: {
             rules: [
-                buildLoader,
-                fileLoader,
                 {
                     oneOf: [
                         scssLoader,
-                        {
-                            test: /\.css$/,
-                            include: /node_modules/,
-                            use: [MiniCss.loader, 'css-loader'],
-                        },
-                        {
-                            test: /\.less$/,
-                            include: /node_modules/,
-                            use: [
-                                MiniCss.loader,
-                                'css-loader',
-                                {
-                                    loader: 'less-loader',
-                                    options: {
-                                        lessOptions: {
-                                            javascriptEnabled: true,
-                                        },
-                                    },
-                                },
-                            ],
-                        },
+                        buildLoader,
+                        fileLoader,
                     ],
                 },
             ],
@@ -79,6 +61,7 @@ export class CustomWebpack {
         ],
         resolve: {
             extensions: ['.tsx', 'ts', '.js'],
+            symlinks: false,
         },
         optimization: {
             /* enable in development mode */
@@ -113,6 +96,14 @@ export class CustomWebpack {
                     },
                 },
             },
+        },
+        /**
+         * 查找loader
+         * //FIXME: 不配置将会在项目根目录下查找, 原因不明(yarn link状态下)
+         * //XXX: 需要额外配置loader搜寻路径
+         */
+        resolveLoader: {
+            modules: [filePath.nodeModule],
         },
     };
 
