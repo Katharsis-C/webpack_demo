@@ -2,7 +2,7 @@ import React from 'react';
 import lodash from 'lodash';
 
 import './index.scss';
-import '../../../common/scss/common.scss';
+// import '../../../common/scss/common.scss';
 import nikonSvg from '../../../asset/image/Nikon.svg';
 
 import { DatePicker, Button, Input, InputNumber } from 'antd';

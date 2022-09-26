@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { IndexPage } from './index';
 import { Page2 } from './page2';
+import '../../common/scss/common.scss';
 
 export const App = () => {
     return (
