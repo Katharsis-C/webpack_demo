@@ -86,7 +86,7 @@ export class CustomWebpack {
             },
         },
         /**
-         * 查找loader
+         * 指定loader的路径
          * //FIXME: 不配置将会在项目根目录下查找, 原因不明(yarn link状态下)
          * //XXX: 需要额外配置loader搜寻路径
          */
