@@ -42,14 +42,16 @@
         "webpackbar": "^5.0.2"
     },
     "scripts": {
-        "devWithMap": "webpack-dev-server --devtool source-map",
         "clean": "rimraf ./dist",
+        "build": "yarn clean && node ./bin/index.js",
+
         "devC": "tsc --build ./webpack/tsconfig.json -w",
         "buildC": "tsc --build ./webpack/tsconfig.json",
-        "build": "yarn clean && node ./bin/index.js",
+
         "idxDev1": "node ./bin/index.js dev --apps=app1 --env=dev",
         "idxDev2": "node ./bin/index.js dev --apps=app2 --env=dev",
-        "idxBuild": "yarn clean && node ./bin/index.js build --apps=app1,app2 --env=test",
+        "idxBuild": "yarn clean && node ./binf/index.js build --apps=app1,app2 --env=test",
+
         "lint": "eslint --ext .tsx src/",
         "lintFix": "eslint --fix"
     }
