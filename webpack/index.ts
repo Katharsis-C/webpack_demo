@@ -14,7 +14,6 @@ const devServerConfig: WebpackDevServer.Configuration = {
 
 /* 构建 */
 const build = () => {
-    console.log(17, filePath);
     CustomWebpack.compiler.run((err, status) => {
         let info = status.toJson();
 

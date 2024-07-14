@@ -12,6 +12,10 @@ const a = {
     fx: '114514',
 };
 
+export function foobar() {
+    console.log(16, 'test tree shaking');
+}
+
 /** test lodash */
 console.log(lodash.get(a, 'fx'));
 

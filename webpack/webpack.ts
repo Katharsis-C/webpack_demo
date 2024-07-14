@@ -1,21 +1,13 @@
-import MiniCss from 'mini-css-extract-plugin';
+// import MiniCss from 'mini-css-extract-plugin';
 // import { urlLoader } from './modules/rawLoader';
-import { fileLoader } from './modules/fileLoader';
-import { scssLoader } from './modules/scssLoader';
-import { buildLoader } from './modules/buildLoader';
-import { filePath } from './common/path';
-import { Compiler, webpack, Configuration } from 'webpack';
-import { htmlPlugin } from './plugins/htmlPlugin';
-import { minicssPlugin } from './plugins/minicssPlugin';
-import { CommandArgs } from './common/commandArgs';
-import { definePlugin } from './plugins/definedPlugin';
 import CssMinimizer from 'css-minimizer-webpack-plugin';
 import ESBuildMinifyPlugin from 'esbuild-loader/dist/minify-plugin';
+import { Compiler, Configuration, webpack } from 'webpack';
+import { CommandArgs, filePath } from './common';
+import { buildLoader, fileLoader, scssLoader } from './modules';
+import { definePlugin, htmlPlugin, minicssPlugin } from './plugins';
 // const { ESBuildMinifyPlugin } = require('esbuild-loader');
 import WebpackBarPlugin from 'webpackbar';
-
-
-console.log(6, filePath.nodeModule);
 
 /**
  * 封装webpack
@@ -44,11 +36,7 @@ export class CustomWebpack {
         module: {
             rules: [
                 {
-                    oneOf: [
-                        scssLoader,
-                        buildLoader,
-                        fileLoader,
-                    ],
+                    oneOf: [scssLoader, buildLoader, fileLoader],
                 },
             ],
             // rules: [buildLoader, scssLoader, fileLoader, urlLoader],
