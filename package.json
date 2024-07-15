@@ -53,6 +53,9 @@
         "idxBuild": "yarn clean && node ./bin/index.js build --apps=app1,app2 --env=test",
 
         "lint": "eslint --ext .tsx src/",
-        "lintFix": "eslint --fix"
+        "lintFix": "eslint --fix",
+
+        "buildAll":"yarn buildC && yarn idxBuild"
+        
     }
 }

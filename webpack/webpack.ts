@@ -28,8 +28,14 @@ export class CustomWebpack {
         output: {
             path: filePath.dist,
             publicPath: 'auto',
-            filename: `[name]/js/[name]_[chunkhash:6].js`,
-            chunkFilename: 'common/js/[name]_[chunkhash:6].bundle.js',
+            filename: (pathData) => {
+                const id = pathData?.chunk?.id;
+                if (CommandArgs.checkIsApp(id.toString())) {
+                    return `[name]/js/[name]_[chunkhash:6].js`;
+                }
+                return `vendor/js/[name]_[chunkhash:6].js`;
+            },
+            // chunkFilename: 'common/js/[name]_[chunkhash:6].bundle.js',
             assetModuleFilename: 'asset/image/[hash:6][ext][query]',
         },
         context: filePath.src,
@@ -71,16 +77,31 @@ export class CustomWebpack {
              * chunk设置, 抽离公共模块
              */
             splitChunks: {
+                chunks: 'all',
                 maxInitialRequests: 3,
                 maxAsyncRequests: 5,
                 minChunks: 1,
                 cacheGroups: {
                     common: {
                         chunks: 'initial',
-                        name: 'common',
                         minSize: 1,
                         test: /[\\/]node_modules[\\/]/,
                         priority: -10,
+                        name: 'common',
+                    },
+                    react: {
+                        chunks: 'initial',
+                        priority: 30,
+                        test: /node_modules[\\/]react(-.*)?/,
+                        minSize: 0,
+                        name: 'react-vendor',
+                    },
+                    antd: {
+                        chunks: 'initial',
+                        priority: 30,
+                        test: /node_modules[\\/]antd/,
+                        minSize: 0,
+                        name: 'antd',
                     },
                 },
             },
