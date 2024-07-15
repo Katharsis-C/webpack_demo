@@ -5,7 +5,7 @@
         "outDir": "../script",
         "esModuleInterop": true,
         "declaration": true,
-        "sourceMap": true
+        "sourceMap": false
     },
     "exclude": ["node_modules"],
 }
